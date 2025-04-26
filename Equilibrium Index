@@ -1,0 +1,18 @@
+ass Solution {
+public int pivotIndex(int[] nums) {
+int Total = 0;
+int n = nums.length;
+int Sumleft =0;
+for(int i = 0 ;i<n;i++){
+Total += nums[i];
+}
+for(int i = 0;i<n;i++){
+int SumRight = Total - Sumleft - nums[i];
+if(SumRight == Sumleft){
+return i;
+}
+Sumleft += nums[i];
+}
+return-1;
+}
+}
