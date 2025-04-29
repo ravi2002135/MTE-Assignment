@@ -1,0 +1,33 @@
+class Solution {
+    int row;
+    int col;
+    public int kthSmallest(int[][] matrix, int k) {
+        row = matrix.length;
+        col = matrix[0].length;
+        int left = matrix[0][0];
+        int ans = -1;
+        int right = matrix[row-1][col -1];
+        while(left <= right){
+            int mid = (left + right) >> 1;
+            if(Count(matrix,mid) >= k){
+                ans = mid ;
+                right = mid -1;
+            }
+            else {
+                left = mid + 1;
+            }
+        }        
+        return ans;
+    }
+    public int Count(int[][] matrix,int x){
+        int cnt = 0;
+        int c = col -1;
+        for(int r = 0; r <row;++r){
+            while(c >= 0 && matrix[r][c] > x){
+                --c;
+            }
+            cnt += (c + 1);
+        }
+        return cnt;
+    }
+}
